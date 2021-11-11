@@ -13,7 +13,7 @@ public class BookMover : MonoBehaviour
     public GameObject book;
     public bool move = true;
 
-    public float maxMovementAllowed = 20;
+    public float maxMovementAllowed = 10;
 
 
     private Vector3 basePosition; // default position of object. Can be overidden in start. Might come handy late
@@ -41,7 +41,7 @@ public class BookMover : MonoBehaviour
     {
         Debug.Log("Setting Movement");
         Movementspeed = speed;
-        bookEndPosition = transform.position + new Vector3(moveFactor, 0, 0);
+        bookEndPosition = book.transform.position + new Vector3(moveFactor, 0, 0);
         Debug.Log("bookStartPosition");
         Debug.Log(bookStartPosition);
         Debug.Log("bookEndPosition");
@@ -54,7 +54,7 @@ public class BookMover : MonoBehaviour
     {
         // Check and stop the movement with help of StopMovement function
         //else movethebook with animation
-        if (Round(transform.position.x, 2) == Round(bookEndPosition.x, 2))
+        if (Round(book.transform.position.x, 2) == Round(bookEndPosition.x, 2))
         {
             //Debug.Log("Stationary");
         }
@@ -69,7 +69,7 @@ public class BookMover : MonoBehaviour
 
     void MoveBook()
     {
-        bookStartPosition = transform.position;
-        transform.position = Vector3.Lerp(transform.position, bookEndPosition, Movementspeed * Time.deltaTime);
+        bookStartPosition = book.transform.position;
+        book.transform.position = Vector3.Lerp(book.transform.position, bookEndPosition, Movementspeed * Time.deltaTime);
     }
 }

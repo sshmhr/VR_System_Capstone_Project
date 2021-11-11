@@ -110,7 +110,7 @@ public abstract class AnalyzeSound : MonoBehaviour
 
     public virtual void Update()
     {
-        Debug.LogError(isListening + " is Listening ? ");
+        //Debug.LogError(isListening + " is Listening ? ");
         //can use these variables that appear in the inspector, or can call the public functions directly from other scripts
         if (stopMicListener)
         {

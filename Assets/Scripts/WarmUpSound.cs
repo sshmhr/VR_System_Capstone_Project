@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class WarmUpSound : AnalyzeSound
 {
     //private float lastFeedback = 0;
+    public GameObject animationController;
     private float lowFrequency = 0;
     private float highFrequency = 15000;
     private float pitchLowThreshold = 250; // increased by Amit for testing(construction noise nearby) Original Value : 100
@@ -87,7 +88,8 @@ public class WarmUpSound : AnalyzeSound
             if (stoppedSpeaking && !speaking)
             {
                 Debug.Log("Stopped Spearking");
-                BookMoverScript = GameObject.Find("Book").GetComponent<BookMover>();
+                //BookMoverScript = GameObject.Find("Book").GetComponent<BookMover>();
+                BookMoverScript = animationController.GetComponent<BookMover>();
                 BookMoverScript.SetMovement(moveFactor: 0.1f, speed: 2);
                 startedSpeaking = false;
                 stoppedSpeaking = true;
