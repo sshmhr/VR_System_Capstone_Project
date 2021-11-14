@@ -90,7 +90,7 @@ public class WarmUpSound : AnalyzeSound
                 Debug.Log("Stopped Spearking");
                 //BookMoverScript = GameObject.Find("Book").GetComponent<BookMover>();
                 BookMoverScript = animationController.GetComponent<BookMover>();
-                BookMoverScript.SetMovement(moveFactor: 0.1f, speed: 2);
+                BookMoverScript.SetMovement();
                 startedSpeaking = false;
                 stoppedSpeaking = true;
                 speaking = false;
