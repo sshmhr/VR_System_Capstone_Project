@@ -33,6 +33,8 @@ public class BookMover : MonoBehaviour
     public Vector3[] couldronBaseTransform = new Vector3[3];
     public Vector3[] featherBaseTransform = new Vector3[3];
 
+    //public Vector3[] couldronMiddleTransform = new Vector3[3];
+
     private Vector3[] currentObjectFinalTransform, currentObjectBaseTransform;
     private Vector3[] cuyrrentObjectStep = new Vector3[3];
 
@@ -40,8 +42,9 @@ public class BookMover : MonoBehaviour
     //                                   // if we have to reset the object position after shuffling activities.
     //                                   // Useful to move with animation
     //                                   // Override them everytime you need to move the object. We can reset the start position whenever we need to move
-    public bool move = false;
-    public float maxStepsAllowed = 10;
+    //public bool move = false;
+    private bool hasCouldronReachedMid = false;
+    public int maxStepsAllowed = 10;
     private Vector3 objectStartPosition; // to be set by the SetMovement Function
     private Vector3 objectEndRotation;
     private Vector3 objectEndScale;
@@ -49,18 +52,28 @@ public class BookMover : MonoBehaviour
 
 
     public int Movementspeed; //Steps to complete 1 movement animation
+    private int stepsLeft;
+    private bool hasActivityEnded = false;
 
     // Update is called once per frame
 
-    public void setCurrentActivityType( int activity) {
-        currentActivity = activity;
+
+    void Start()
+    {
+        stepsLeft = maxStepsAllowed;
     }
 
     void Update()
     {
-        if (currentObject && currentObjectFinalTransform != null && Math.Abs(Vector3.Distance(currentObject.transform.position, currentObjectFinalTransform[0])) < 0.01)
+        // getDistance(currentObject.transform.position, currentObjectFinalTransform[0]) < 0.01
+        if (currentObject && currentObjectFinalTransform != null && hasActivityEnded)
             handleEventEnd();
         else CheckMovement();
+    }
+
+    public void setCurrentActivityType(int activity)
+    {
+        currentActivity = activity;
     }
 
     private void handleEventEnd()
@@ -70,26 +83,69 @@ public class BookMover : MonoBehaviour
 
     public void SetMovement()
     {
-        //Debug.Log("Setting Movement");
-        //Debug.Log("bookStartPosition");
-        //Debug.Log(bookStartPosition);
-        //Debug.Log("bookEndPosition");
-        //Debug.Log(bookEndPosition);
         detectCurrentObject();
-        move = true;
+        //move = true;
+        handleGameState();
         Vector3[] moveFactor = calculateMoveFactor();
+        Debug.LogError(moveFactor[0].ToString("G"));
         objectEndPosition = currentObject.transform.position + moveFactor[0];
         objectEndRotation = currentObject.transform.rotation.eulerAngles + moveFactor[1];
-        //Debug.LogError(Vector3.Distance(currentObject.transform.position, currentObjectFinalTransform[0]));
         objectEndScale = currentObject.transform.localScale + moveFactor[2];
+    }
+
+    private float getDistance(Vector3 vector1, Vector3 vector2)
+    {
+        return Math.Abs(Vector3.Distance(vector1, vector2));
     }
 
     private Vector3[] calculateMoveFactor()
     {
+        //if (currentObject == couldron)
+        //    return calculateCouldronMoveFactor();
+        //else
+            return calculateDefaultMoveFactor(maxStepsAllowed);
+    }
+
+    private void handleGameState()
+    {
+        if (stepsLeft <= 0)
+        {
+            hasActivityEnded = true;
+        }
+        else
+            stepsLeft--;
+    }
+
+    //private Vector3[] calculateCouldronMoveFactor()
+    //{
+    //    if (stepsLeft<=maxStepsAllowed/2)
+    //        hasCouldronReachedMid = true;
+
+    //    int steps = maxStepsAllowed;
+    //    if (steps == 1) return calculateDefaultMoveFactor(steps);
+    //    steps = (int)(steps / 2);
+
+    //    if (hasCouldronReachedMid)
+    //    {
+    //        currentObjectBaseTransform = couldronMiddleTransform;
+    //        currentObjectFinalTransform = couldronFinalTransform;
+    //    }
+    //    else
+    //    {
+    //        currentObjectBaseTransform = couldronBaseTransform;
+    //        currentObjectFinalTransform = couldronMiddleTransform;
+    //        steps += maxStepsAllowed % 2;
+    //    }
+
+    //    return calculateDefaultMoveFactor(steps);
+    //}
+
+    private Vector3[] calculateDefaultMoveFactor(int maxStepsAllowed)
+    {
         Vector3[] moveFactor = new Vector3[3];
-        for (int i = 0; i < moveFactor.Length; i++) {
-            moveFactor[i] = (currentObjectFinalTransform[i] - currentObjectBaseTransform[i]) / maxStepsAllowed;
-            //Debug.LogError(" a " + i + " " + moveFactor[i]);
+        for (int i = 0; i < moveFactor.Length; i++)
+        {
+            moveFactor[i] = (currentObjectFinalTransform[i] - currentObjectBaseTransform[i]) / maxStepsAllowed;        
         }
         return moveFactor;
     }
@@ -121,7 +177,6 @@ public class BookMover : MonoBehaviour
         // Check and stop the movement with help of StopMovement function
         //else move the object with animation
         if (currentObject == null) return;
-        //Debug.Log("ERR" + currentObject.transform.position + " " + objectEndPosition);
         if (Math.Abs(Vector3.Distance(currentObject.transform.position, objectEndPosition)) > 0.01)
         {
             Debug.Log("ERR" + currentObject.transform.position + " " + objectEndPosition);
