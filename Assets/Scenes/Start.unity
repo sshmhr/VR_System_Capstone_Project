@@ -470,7 +470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &504324572
 Transform:
   m_ObjectHideFlags: 0
@@ -1377,6 +1377,7 @@ GameObject:
   - component: {fileID: 905123103}
   - component: {fileID: 905123102}
   - component: {fileID: 905123101}
+  - component: {fileID: 905123104}
   m_Layer: 0
   m_Name: XR Interaction Manager
   m_TagString: Untagged
@@ -1570,6 +1571,73 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &905123104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905123097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646b773abefc11b48b7c9c6792b73448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  candlesBig: {fileID: 49132656150262235, guid: 99ae8ed5640da524fbd24b8c4881c5ea, type: 3}
+  candlesLong: {fileID: 6706658742536293429, guid: be9dbb0ed873a494b9ca572b4c3c4dc1, type: 3}
+  candlesMed: {fileID: 3097793844769931399, guid: 744eb1f976efb6246931f5131438f149, type: 3}
+  candles1: {fileID: 51328515843466680, guid: e44884e41bef97049a026a0739a210ed, type: 3}
+  candles2: {fileID: 6029513750512955345, guid: ee89a9cf13809ab4fa420b95bc7fccfd, type: 3}
+  candles3: {fileID: 2467761699606592102, guid: 7aadc5cd3dcb2c0468e3b5a642d261c5, type: 3}
+  lamp: {fileID: 6419402577008179956, guid: a72f36e2a48cfc5439b0883dc599ec2a, type: 3}
+--- !u!1 &953727202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 953727203}
+  - component: {fileID: 953727204}
+  m_Layer: 0
+  m_Name: Game Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &953727203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953727202}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.9240112, y: 1.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &953727204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953727202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 625be483f6dbe4a48a5ae49523e8854d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bookObjects: []
+  couldronObjects: []
+  featherObjects: []
+  lightObjects: []
+  treeObjects: []
 --- !u!1 &954840893
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,7 +2338,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 0}
+  m_ModelPrefab: {fileID: 5652820046355031450, guid: fb7d1ad7de7cc9243b32f14cf0890af3, type: 3}
   m_ModelParent: {fileID: 0}
   m_Model: {fileID: 0}
   m_AnimateModel: 0
