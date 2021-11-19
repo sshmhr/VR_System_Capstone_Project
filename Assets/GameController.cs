@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private const int ACTIVITYCOUNT = 3;
+    private const int ACTIVITYCOUNT = 4;
     private const int BOOKACTIVITY = 0;
     private const int COULDRONACTIVITY = 1;
     private const int FEATHERACTIVITY = 2;
-    private const int LIGHTACTIVITY = 3;
-    private const int TREEACTIVITY = 4;
+    private const int LIGHTACTIVITY = 4;
+    private const int TREEACTIVITY = 3;
     private int currentActivity;
 
     public GameObject[] bookObjects;
