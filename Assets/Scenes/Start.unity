@@ -1137,8 +1137,9 @@ GameObject:
   m_Component:
   - component: {fileID: 801306943}
   - component: {fileID: 801306944}
+  - component: {fileID: 801306945}
   m_Layer: 0
-  m_Name: Animation controller
+  m_Name: Game Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1200,6 +1201,29 @@ MonoBehaviour:
   - {x: 1789.696, y: 1789.696, z: 1789.696}
   maxStepsAllowed: 4
   Movementspeed: 1
+--- !u!114 &801306945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801306942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 625be483f6dbe4a48a5ae49523e8854d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bookObjects:
+  - {fileID: 1796776350}
+  - {fileID: 862830366}
+  couldronObjects:
+  - {fileID: 1256024316}
+  - {fileID: 1390673287}
+  featherObjects:
+  - {fileID: 1796776350}
+  - {fileID: 1753069077}
+  lightObjects: []
+  treeObjects: []
 --- !u!1001 &812396839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1546,49 +1570,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &953727202
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 953727203}
-  - component: {fileID: 953727204}
-  m_Layer: 0
-  m_Name: Game Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &953727203
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953727202}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9240112, y: 1.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &953727204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953727202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 625be483f6dbe4a48a5ae49523e8854d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &954840893
 GameObject:
   m_ObjectHideFlags: 0
@@ -2384,6 +2365,11 @@ MonoBehaviour:
       m_SingletonActionBindings: []
     m_Reference: {fileID: 875253871413052681, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ButtonPressPoint: 0.5
+--- !u!1 &1256024316 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5372165669947223807, guid: a5acf6d4ec6f8b149a64d05d85311d99, type: 3}
+  m_PrefabInstance: {fileID: 5372165670987855270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1390673287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2399,7 +2385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1390673288
 Transform:
   m_ObjectHideFlags: 0
@@ -2989,6 +2975,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5594130044369139065, guid: 2038901d092e15f4598ed3cf5316ac57, type: 3}
   m_PrefabInstance: {fileID: 1766731165}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1796776350 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 858703487817757240, guid: 0aaaec73e17c57e45bb15ffc77a6338b, type: 3}
+  m_PrefabInstance: {fileID: 516739216095093104}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1874951802
 GameObject:
   m_ObjectHideFlags: 0
@@ -3442,7 +3433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5372165669947223807, guid: a5acf6d4ec6f8b149a64d05d85311d99, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5372165669947223807, guid: a5acf6d4ec6f8b149a64d05d85311d99, type: 3}
       propertyPath: m_TagString

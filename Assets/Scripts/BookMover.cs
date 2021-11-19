@@ -21,7 +21,7 @@ public class BookMover : MonoBehaviour
     public GameObject feather;
 
     public float movementSpeed = 2;
-    private int currentActivity = 1;
+    private int currentActivity ;
 
     private GameObject currentObject;
 
@@ -61,6 +61,7 @@ public class BookMover : MonoBehaviour
     void Start()
     {
         stepsLeft = maxStepsAllowed;
+        currentActivity = gameObject.GetComponent<GameController>().getCurrentActivity();
     }
 
     void Update()
@@ -78,7 +79,27 @@ public class BookMover : MonoBehaviour
 
     private void handleEventEnd()
     {
-        Debug.LogError("end");
+        resetActiviyState();
+        gameObject.GetComponent<GameController>().loadNextActivity();
+        currentActivity = gameObject.GetComponent<GameController>().getCurrentActivity();
+
+    }
+
+    private void resetActiviyState()
+    {
+        resetTransforms();
+        hasActivityEnded = false;
+        stepsLeft = maxStepsAllowed;
+        currentObject = null;
+        currentObjectFinalTransform = null;
+    }
+
+    private void resetTransforms()
+    {
+        currentObject.transform.localPosition = currentObjectBaseTransform[0];
+        currentObject.transform.localRotation = Quaternion.Euler(currentObjectBaseTransform[1]);
+        currentObject.transform.localScale = currentObjectBaseTransform[2];
+
     }
 
     public void SetMovement()
@@ -87,7 +108,6 @@ public class BookMover : MonoBehaviour
         //move = true;
         handleGameState();
         Vector3[] moveFactor = calculateMoveFactor();
-        Debug.LogError(moveFactor[0].ToString("G"));
         objectEndPosition = currentObject.transform.position + moveFactor[0];
         objectEndRotation = currentObject.transform.rotation.eulerAngles + moveFactor[1];
         objectEndScale = currentObject.transform.localScale + moveFactor[2];
