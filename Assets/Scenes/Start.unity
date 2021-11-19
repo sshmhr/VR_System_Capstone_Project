@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -470,7 +470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &504324572
 Transform:
   m_ObjectHideFlags: 0
@@ -1353,6 +1353,7 @@ GameObject:
   - component: {fileID: 905123103}
   - component: {fileID: 905123102}
   - component: {fileID: 905123101}
+  - component: {fileID: 905123104}
   m_Layer: 0
   m_Name: XR Interaction Manager
   m_TagString: Untagged
@@ -1405,7 +1406,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905123097}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5c112fd39da622458058cb095264cd3, type: 3}
   m_Name: 
@@ -1546,6 +1547,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &905123104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905123097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646b773abefc11b48b7c9c6792b73448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  candlesBig: {fileID: 49132656150262235, guid: 99ae8ed5640da524fbd24b8c4881c5ea, type: 3}
+  candlesLong: {fileID: 6706658742536293429, guid: be9dbb0ed873a494b9ca572b4c3c4dc1, type: 3}
+  candlesMed: {fileID: 3097793844769931399, guid: 744eb1f976efb6246931f5131438f149, type: 3}
+  candles1: {fileID: 51328515843466680, guid: e44884e41bef97049a026a0739a210ed, type: 3}
+  candles2: {fileID: 6029513750512955345, guid: ee89a9cf13809ab4fa420b95bc7fccfd, type: 3}
+  candles3: {fileID: 2467761699606592102, guid: 7aadc5cd3dcb2c0468e3b5a642d261c5, type: 3}
+  lamp: {fileID: 6419402577008179956, guid: a72f36e2a48cfc5439b0883dc599ec2a, type: 3}
 --- !u!1 &953727202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,7 +2309,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 0}
+  m_ModelPrefab: {fileID: 5652820046355031450, guid: fb7d1ad7de7cc9243b32f14cf0890af3, type: 3}
   m_ModelParent: {fileID: 0}
   m_Model: {fileID: 0}
   m_AnimateModel: 0
@@ -2399,7 +2419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1390673288
 Transform:
   m_ObjectHideFlags: 0
@@ -2906,7 +2926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
@@ -3442,7 +3462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5372165669947223807, guid: a5acf6d4ec6f8b149a64d05d85311d99, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5372165669947223807, guid: a5acf6d4ec6f8b149a64d05d85311d99, type: 3}
       propertyPath: m_TagString
