@@ -13,8 +13,6 @@ public class InstiateCandles : MonoBehaviour
     public GameObject candles2;
     public GameObject candles3;
 
-
-
     public GameObject lamp;
     private float groundLevelY = 0.2673666f;
     private float groundLevelYLamp = 0.336f;

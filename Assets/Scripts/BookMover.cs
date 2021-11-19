@@ -19,19 +19,22 @@ public class BookMover : MonoBehaviour
     public GameObject book;
     public GameObject couldron;
     public GameObject feather;
+    public GameObject plant;
 
     public float movementSpeed = 2;
-    private int currentActivity ;
+    private int currentActivity  ;
 
     private GameObject currentObject;
 
     public Vector3[] bookFinalTransform = new Vector3[3];
     public Vector3[] couldronFinalTransform = new Vector3[3];
     public Vector3[] featherFinalTransform = new Vector3[3];
+    public Vector3[] plantFinalTransform = new Vector3[3];
 
     public Vector3[] bookBaseTransform = new Vector3[3];
     public Vector3[] couldronBaseTransform = new Vector3[3];
     public Vector3[] featherBaseTransform = new Vector3[3];
+    public Vector3[] plantBaseTransform = new Vector3[3];
 
     //public Vector3[] couldronMiddleTransform = new Vector3[3];
 
@@ -188,6 +191,12 @@ public class BookMover : MonoBehaviour
                 currentObjectFinalTransform = featherFinalTransform;
                 currentObject = feather;
                 break;
+            case 3:
+                currentObjectBaseTransform = plantBaseTransform;
+                currentObjectFinalTransform = plantFinalTransform;
+                currentObject = plant;
+                break;
+
         }
     }
 
