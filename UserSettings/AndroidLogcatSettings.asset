@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "1PASH9AGR40195",
         "name": "com.slp.PediatricSLPVideogame",
-        "processId": 8926,
+        "processId": 14923,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -121,6 +121,48 @@
             "name": "com.slp.PediatricSLPVideogame",
             "processId": 8926,
             "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 14521,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 14923,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH865921242",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 5372,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH865921242",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 6840,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH865921242",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 10137,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH865921242",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 11224,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH865921242",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 11353,
+            "exited": false
         }
     ],
     "m_Tags": {
@@ -131,7 +173,7 @@
             },
             {
                 "m_Name": "No Filter",
-                "m_Selected": true
+                "m_Selected": false
             },
             {
                 "m_Name": "",
@@ -147,7 +189,7 @@
             },
             {
                 "m_Name": "Unity",
-                "m_Selected": false
+                "m_Selected": true
             },
             {
                 "m_Name": "CRASH",
@@ -173,7 +215,7 @@
         "MemoryGroup": 2,
         "Behavior": 0
     },
-    "m_Filter": "inside",
+    "m_Filter": "",
     "m_FilterIsRegularExpression": false,
     "m_SymbolPaths": []
 }

@@ -30,7 +30,7 @@ public class WarmUpSound : AnalyzeSound
         {
 
             currentPitch = GetPitch(lowFrequency, highFrequency);
-            Debug.Log(currentPitch);
+            //Debug.Log(currentPitch);
             if (currentPitch < pitchLowThreshold) return 0;
             else return 1;
         }
@@ -79,15 +79,15 @@ public class WarmUpSound : AnalyzeSound
     void CheckRepStatus()
     {
         //check if the player has completed the rep[i.e if player had started speaking in past and  few seconds(minSpeakingSeconds) has passed.]
-        Debug.Log("Checking for Stuff Speaking=" + speaking.ToString() + " stoppedSpeaking= " + stoppedSpeaking.ToString() + " startedSpeaking= " + startedSpeaking.ToString());
+        //Debug.Log("Checking for Stuff Speaking=" + speaking.ToString() + " stoppedSpeaking= " + stoppedSpeaking.ToString() + " startedSpeaking= " + startedSpeaking.ToString());
 
         if (speaking && CheckTime())
         { // if player has been speaking and the time is acceptable
-            Debug.Log("Spearking");
+            //Debug.Log("Spearking");
             stoppedSpeaking = CheckIfStoppedSpeaking();
             if (stoppedSpeaking && !speaking)
             {
-                Debug.Log("Stopped Spearking");
+                //Debug.Log("Stopped Spearking");
                 //BookMoverScript = GameObject.Find("Book").GetComponent<BookMover>();
                 BookMoverScript = animationController.GetComponent<BookMover>();
                 BookMoverScript.SetMovement();
@@ -156,7 +156,7 @@ public class WarmUpSound : AnalyzeSound
         int currentTime = GetUnixTime();
         if (startedSpeakingTime != 0) //only do the time check if this variable was overridden after initialization
         {
-            Debug.Log("Checking time Start: " + startedSpeakingTime.ToString() + " Curr= " + currentTime.ToString() + " Diff=" + (currentTime - startedSpeakingTime).ToString());
+            //Debug.Log("Checking time Start: " + startedSpeakingTime.ToString() + " Curr= " + currentTime.ToString() + " Diff=" + (currentTime - startedSpeakingTime).ToString());
             if ((currentTime - startedSpeakingTime) > minSpeakingSeconds)
             {
                 return true;

@@ -366,7 +366,7 @@ public abstract class AnalyzeSound : MonoBehaviour
     /// </summary>
     public void StartListening()
     {
-        Debug.Log("started listening");
+        //Debug.Log("started listening");
         isListening = true;
     }
 
