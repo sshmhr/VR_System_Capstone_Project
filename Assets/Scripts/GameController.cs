@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentActivity = BOOKACTIVITY;
+        currentActivity = 0;
         showGameObjects(findCurrentGameObjects());
     }
 
@@ -33,7 +33,8 @@ public class GameController : MonoBehaviour
         showGameObjects(findCurrentGameObjects());
     }
 
-    private static void showGameObjects(GameObject[] currentActivityObjects)
+    // changed to public temporarily, removed static temporarily
+    public void showGameObjects(GameObject[] currentActivityObjects)
     {
         foreach (GameObject gameObject in currentActivityObjects)
         {
@@ -41,7 +42,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private GameObject[] findCurrentGameObjects()
+    public GameObject[] findCurrentGameObjects()
     {
         GameObject[] currentGameObjects = null;
         switch (currentActivity) {
@@ -65,7 +66,8 @@ public class GameController : MonoBehaviour
         return currentGameObjects;
     }
 
-    private void hideGameObjects(GameObject[] currentActivityObjects)
+    // changed to public temporarily
+    public void hideGameObjects(GameObject[] currentActivityObjects)
     {
         foreach (GameObject gameObject in currentActivityObjects)
         {

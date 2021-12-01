@@ -21,6 +21,8 @@ public class BookMover : MonoBehaviour
     public GameObject feather;
     public GameObject plant;
 
+    private SoundController SoundController;
+
     public float movementSpeed = 2;
     private int currentActivity  ;
 
@@ -58,6 +60,19 @@ public class BookMover : MonoBehaviour
     private int stepsLeft;
     private bool hasActivityEnded = false;
 
+    // handles sound start and end
+    private bool hasSoundStarted = false;
+    private bool hasSoundEnded = true;
+
+    // Number of sounds to do in this play
+    private int numOfSoundsToPlay = 0;
+    public int numOfSoundsRemainingToPlay = 0;
+
+    private List<string> sounds;
+
+    private bool isGameOver = false; // to be used by function (probably) UI part,
+                                     // which restarts the game or starts from welcome screen
+
     // Update is called once per frame
 
 
@@ -65,14 +80,52 @@ public class BookMover : MonoBehaviour
     {
         stepsLeft = maxStepsAllowed;
         currentActivity = gameObject.GetComponent<GameController>().getCurrentActivity();
+        SoundController = gameObject.GetComponent<SoundController>();
+        HandleNSounds(3); // To be set by the code which starts the game
     }
 
     void Update()
     {
-        // getDistance(currentObject.transform.position, currentObjectFinalTransform[0]) < 0.01
-        if (currentObject && currentObjectFinalTransform != null && hasActivityEnded)
-            handleEventEnd();
-        else CheckMovement();
+        isGameOver = CheckGameOver();
+        if (!isGameOver)
+        {
+            // unless sound is played, Dont to anything
+            if (!SoundController.hasSoundFinishedPlaying()) return;
+            // getDistance(currentObject.transform.position, currentObjectFinalTransform[0]) < 0.01
+            if (currentObject && currentObjectFinalTransform != null && hasActivityEnded)
+                handleEventEnd();
+
+            else CheckMovement();
+        }
+        else
+        {
+            Debug.Log("Game Over");
+            // Do stuff , Show menu and retry option
+        }
+        
+        
+    }
+
+    public bool CheckGameOver()
+    {
+        if (numOfSoundsRemainingToPlay == -1) // when the last sound is played
+        {
+            return true;
+        }
+        return false;
+    }
+    // call this from the UI, if you want to let the kind practice n sounds.
+    public void HandleNSounds(int n)
+    {
+        SoundController.SetUpSound(); // can be setup in soundconttroller or outside
+        isGameOver = false;
+        sounds = SoundController.GetNSound(n);
+        Debug.Log(sounds);
+        numOfSoundsToPlay = sounds.Count; // max sound that can be played is what we have on the soundcontroller.cs
+        numOfSoundsRemainingToPlay = sounds.Count;
+        gameObject.GetComponent<GameController>().showGameObjects(gameObject.GetComponent<GameController>().findCurrentGameObjects());
+        SoundController.PlaySound(sounds[numOfSoundsToPlay - numOfSoundsRemainingToPlay]);
+        
     }
 
     public void setCurrentActivityType(int activity)
@@ -84,6 +137,13 @@ public class BookMover : MonoBehaviour
     {
         resetActiviyState();
         gameObject.GetComponent<GameController>().loadNextActivity();
+
+        // Play Sound and dont let activity start untill sound is played
+        numOfSoundsRemainingToPlay -= 1;
+        Debug.Log(numOfSoundsRemainingToPlay);
+        SoundController.PlaySound(sounds[numOfSoundsToPlay - numOfSoundsRemainingToPlay]);
+        
+
         currentActivity = gameObject.GetComponent<GameController>().getCurrentActivity();
 
     }
@@ -208,7 +268,7 @@ public class BookMover : MonoBehaviour
         if (currentObject == null) return;
         if (Math.Abs(Vector3.Distance(currentObject.transform.position, objectEndPosition)) > 0.01)
         {
-            Debug.Log("ERR" + currentObject.transform.position + " " + objectEndPosition);
+           // Debug.Log("ERR" + currentObject.transform.position + " " + objectEndPosition);
             MoveObject();
         }
 
@@ -235,14 +295,14 @@ public class BookMover : MonoBehaviour
 
     private void rotateObject()
     {
-        Debug.LogError(" errr " + currentObject.transform.rotation.eulerAngles + " , " + objectEndRotation);
+        //Debug.LogError(" errr " + currentObject.transform.rotation.eulerAngles + " , " + objectEndRotation);
 
         currentObject.transform.rotation = Quaternion.Lerp(Quaternion.Euler(currentObject.transform.rotation.eulerAngles), Quaternion.Euler(objectEndRotation), movementSpeed*Time.deltaTime);
     }
 
     void MoveObject()
     {
-        Debug.Log("ERR" + currentObject.transform.position + " " + objectEndPosition);
+        //Debug.Log("ERR" + currentObject.transform.position + " " + objectEndPosition);
         currentObject.transform.position = Vector3.Lerp(currentObject.transform.position, objectEndPosition, movementSpeed * Time.deltaTime);
     }
 }
