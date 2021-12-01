@@ -7,24 +7,12 @@ using static System.Math;
 
 // Added by Anjali, Amit Oct 28,2021
 // Updated and altered by suyash on 11-11 21
-
-// Try not to hardcode stuff
-// make things public only if necessary
-// comment the unnecessary print statments before pushing the code
-
 public class BookMover : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     public GameObject book;
     public GameObject couldron;
     public GameObject feather;
     public GameObject plant;
-
-    private SoundController SoundController;
-
-    public float movementSpeed = 2;
-    private int currentActivity  ;
 
     private GameObject currentObject;
 
@@ -38,28 +26,16 @@ public class BookMover : MonoBehaviour
     public Vector3[] featherBaseTransform = new Vector3[3];
     public Vector3[] plantBaseTransform = new Vector3[3];
 
-    //public Vector3[] couldronMiddleTransform = new Vector3[3];
-
     private Vector3[] currentObjectFinalTransform, currentObjectBaseTransform;
     private Vector3[] cuyrrentObjectStep = new Vector3[3];
 
-    //private Vector3[][] basePositions; // default position of object. Can be overidden in start. Might come handy late
-    //                                   // if we have to reset the object position after shuffling activities.
-    //                                   // Useful to move with animation
-    //                                   // Override them everytime you need to move the object. We can reset the start position whenever we need to move
-    //public bool move = false;
-    private bool hasCouldronReachedMid = false;
-    public int maxStepsAllowed = 10;
+
     private Vector3 objectStartPosition; // to be set by the SetMovement Function
     private Vector3 objectEndRotation;
     private Vector3 objectEndScale;
     private Vector3 objectEndPosition; // to be set by the SetMovement Function
 
-
-    public int Movementspeed; //Steps to complete 1 movement animation
-    private int stepsLeft;
-    private bool hasActivityEnded = false;
-
+    private SoundController SoundController;
     // handles sound start and end
     private bool hasSoundStarted = false;
     private bool hasSoundEnded = true;
@@ -67,9 +43,14 @@ public class BookMover : MonoBehaviour
     // Number of sounds to do in this play
     private int numOfSoundsToPlay = 0;
     public int numOfSoundsRemainingToPlay = 0;
-
     private List<string> sounds;
 
+    public float movementSpeed = 2;
+    private int currentActivity;
+    public int maxStepsAllowed = 10;
+    public int Movementspeed;
+    private int stepsLeft;
+    private bool hasActivityEnded = false;
     private bool isGameOver = false; // to be used by function (probably) UI part,
                                      // which restarts the game or starts from welcome screen
 
@@ -81,7 +62,7 @@ public class BookMover : MonoBehaviour
         stepsLeft = maxStepsAllowed;
         currentActivity = gameObject.GetComponent<GameController>().getCurrentActivity();
         SoundController = gameObject.GetComponent<SoundController>();
-        HandleNSounds(3); // To be set by the code which starts the game
+        HandleNSounds(5); // To be set by the code which starts the game
     }
 
     void Update()
@@ -94,7 +75,6 @@ public class BookMover : MonoBehaviour
             // getDistance(currentObject.transform.position, currentObjectFinalTransform[0]) < 0.01
             if (currentObject && currentObjectFinalTransform != null && hasActivityEnded)
                 handleEventEnd();
-
             else CheckMovement();
         }
         else
@@ -102,8 +82,6 @@ public class BookMover : MonoBehaviour
             Debug.Log("Game Over");
             // Do stuff , Show menu and retry option
         }
-        
-        
     }
 
     public bool CheckGameOver()
@@ -114,6 +92,7 @@ public class BookMover : MonoBehaviour
         }
         return false;
     }
+
     // call this from the UI, if you want to let the kind practice n sounds.
     public void HandleNSounds(int n)
     {
@@ -124,8 +103,7 @@ public class BookMover : MonoBehaviour
         numOfSoundsToPlay = sounds.Count; // max sound that can be played is what we have on the soundcontroller.cs
         numOfSoundsRemainingToPlay = sounds.Count;
         gameObject.GetComponent<GameController>().showGameObjects(gameObject.GetComponent<GameController>().findCurrentGameObjects());
-        SoundController.PlaySound(sounds[numOfSoundsToPlay - numOfSoundsRemainingToPlay]);
-        
+        SoundController.PlaySound(sounds[numOfSoundsToPlay - numOfSoundsRemainingToPlay]); 
     }
 
     public void setCurrentActivityType(int activity)
