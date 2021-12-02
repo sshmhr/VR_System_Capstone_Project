@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "1PASH9AGR40195",
         "name": "com.slp.PediatricSLPVideogame",
-        "processId": 25391,
+        "processId": 32320,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,67 +11,55 @@
         {
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
-            "processId": 7310,
+            "processId": 29885,
             "exited": true
         },
         {
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
-            "processId": 8842,
+            "processId": 30274,
             "exited": true
         },
         {
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
-            "processId": 8926,
+            "processId": 30537,
             "exited": true
         },
         {
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
-            "processId": 14521,
+            "processId": 30637,
             "exited": true
         },
         {
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
-            "processId": 14923,
+            "processId": 31091,
             "exited": true
         },
         {
             "deviceId": "1PASH9AGR40195",
-            "name": "com.oculus.os.clearactivity",
-            "processId": 12957,
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 31550,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.oculus.os.vrusb",
+            "processId": 31877,
             "exited": false
         },
         {
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
-            "processId": 22277,
+            "processId": 32079,
             "exited": false
         },
         {
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
-            "processId": 22659,
-            "exited": false
-        },
-        {
-            "deviceId": "1PASH9AGR40195",
-            "name": "com.slp.PediatricSLPVideogame",
-            "processId": 24818,
-            "exited": false
-        },
-        {
-            "deviceId": "1PASH9AGR40195",
-            "name": "com.slp.PediatricSLPVideogame",
-            "processId": 25088,
-            "exited": false
-        },
-        {
-            "deviceId": "1PASH9AGR40195",
-            "name": "com.slp.PediatricSLPVideogame",
-            "processId": 25391,
+            "processId": 32320,
             "exited": false
         },
         {
