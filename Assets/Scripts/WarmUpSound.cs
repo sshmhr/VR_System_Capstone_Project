@@ -69,7 +69,7 @@ public class WarmUpSound : AnalyzeSound
         //if (AnalyzePitch()==0)
         //{
         //    BookMoverScript = GameObject.Find("Book").GetComponent<BookMover>();
-        //    BookMoverScript.SetMovement(moveFactor: 0.1f, speed: 2);
+        //    BookMoverScript.handleRep(moveFactor: 0.1f, speed: 2);
         //}
         //Debug.LogError("player speaking status" + AnalyzePitch());
         // if startedspeaking and now stopped speaking(no sound speaking) -->
@@ -90,7 +90,7 @@ public class WarmUpSound : AnalyzeSound
                 //Debug.Log("Stopped Spearking");
                 //BookMoverScript = GameObject.Find("Book").GetComponent<BookMover>();
                 BookMoverScript = animationController.GetComponent<BookMover>();
-                BookMoverScript.SetMovement();
+                BookMoverScript.handleRep();
                 startedSpeaking = false;
                 stoppedSpeaking = true;
                 speaking = false;
