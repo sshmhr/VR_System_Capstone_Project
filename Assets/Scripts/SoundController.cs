@@ -21,16 +21,7 @@ public class SoundController : MonoBehaviour
     // Switch away from LIST TO a class or JSON whichever is easier
     private  List<string> soundData = new List<string>();
     private string soundDirectory = "AudioFiles";
-    //public AudioClip currentClip;
     private AudioSource audioSource;
-    void Start()
-    {
-        
-        //SetUpSound();
-        
-
-        //PlaySound(soundData[0]);
-    }
     public void SetUpSound()
     {
         audioSource = GetComponent<AudioSource>();
@@ -41,6 +32,7 @@ public class SoundController : MonoBehaviour
         soundData.Add($"{soundDirectory}/say ma");
         soundData.Add($"{soundDirectory}/say ta");
         soundData.Add($"{soundDirectory}/aah");
+
         //soundData.Add(
         //     new Sound()
         //     {
@@ -92,10 +84,5 @@ public class SoundController : MonoBehaviour
     public bool hasSoundFinishedPlaying()
     {
         return !audioSource.isPlaying;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }
