@@ -7,22 +7,14 @@ using static System.Math;
 
 // Added by Anjali, Amit Oct 28,2021
 // Updated and altered by suyash on 11-11 21
-
-// Try not to hardcode stuff
-// make things public only if necessary
-// comment the unnecessary print statments before pushing the code
-
 public class BookMover : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private GameController gameController;
 
     public GameObject book;
     public GameObject couldron;
     public GameObject feather;
     public GameObject plant;
-
-    public float movementSpeed = 2;
-    private int currentActivity  ;
 
     private GameObject currentObject;
 
@@ -36,43 +28,174 @@ public class BookMover : MonoBehaviour
     public Vector3[] featherBaseTransform = new Vector3[3];
     public Vector3[] plantBaseTransform = new Vector3[3];
 
-    //public Vector3[] couldronMiddleTransform = new Vector3[3];
-
     private Vector3[] currentObjectFinalTransform, currentObjectBaseTransform;
     private Vector3[] cuyrrentObjectStep = new Vector3[3];
 
-    //private Vector3[][] basePositions; // default position of object. Can be overidden in start. Might come handy late
-    //                                   // if we have to reset the object position after shuffling activities.
-    //                                   // Useful to move with animation
-    //                                   // Override them everytime you need to move the object. We can reset the start position whenever we need to move
-    //public bool move = false;
-    private bool hasCouldronReachedMid = false;
-    public int maxStepsAllowed = 10;
-    private Vector3 objectStartPosition; // to be set by the SetMovement Function
+
+    private Vector3 objectStartPosition; // to be set by the handleRep Function
     private Vector3 objectEndRotation;
     private Vector3 objectEndScale;
-    private Vector3 objectEndPosition; // to be set by the SetMovement Function
+    private Vector3 objectEndPosition; // to be set by the handleRep Function
 
+    private SoundController SoundController;
+    // handles sound start and end
+    private bool hasSoundStarted = false;
+    private bool hasSoundEnded = true;
 
-    public int Movementspeed; //Steps to complete 1 movement animation
+    // Number of sounds to do in this play
+    private int numOfSoundsToPlay = 0;
+    public int numOfSoundsRemainingToPlay = 0;
+    private List<string> sounds;
+
+    public float maxBrightness = 10;
+    public float movementSpeed = 2;
+    private int currentActivity;
+    public int maxStepsAllowed = 10;
+    public int Movementspeed;
     private int stepsLeft;
     private bool hasActivityEnded = false;
+    private bool isGameOver = false; // to be used by function (probably) UI part,
+    private Light[] lights;
+                                     // which restarts the game or starts from welcome screen
 
     // Update is called once per frame
 
 
     void Start()
     {
+        gameController = gameObject.GetComponent<GameController>();
         stepsLeft = maxStepsAllowed;
-        currentActivity = gameObject.GetComponent<GameController>().getCurrentActivity();
+        currentActivity = gameController.getCurrentActivity();
+        SoundController = gameObject.GetComponent<SoundController>();
+        HandleNSounds(5); // To be set by the code which starts the game
     }
 
     void Update()
     {
-        // getDistance(currentObject.transform.position, currentObjectFinalTransform[0]) < 0.01
-        if (currentObject && currentObjectFinalTransform != null && hasActivityEnded)
-            handleEventEnd();
-        else CheckMovement();
+        isGameOver = CheckGameOver();
+        if (!isGameOver)
+        {
+            // unless sound is played, Dont to anything
+            if (!SoundController.hasSoundFinishedPlaying()) return;
+            // getDistance(currentObject.transform.position, currentObjectFinalTransform[0]) < 0.01
+            if (hasActivityEnded)
+                handleEventEnd();
+            if(currentObject!=null) CheckMovement();
+        }
+        else
+        {
+            Debug.Log("Game Over");
+            // Do stuff , Show menu and retry option
+        }
+    }
+
+
+    public void handleRep()
+    {
+        handleGameState();
+        if (currentActivity == GameController.LIGHTACTIVITY)
+            handleLightActivity();
+        else
+            handleDefaultActivities();
+    }
+
+    private void handleLightActivity()
+    {
+        float lightStepValue = maxBrightness / maxStepsAllowed;
+        if (lights == null) lights = (Light[])FindObjectsOfType(typeof(Light));
+        foreach (Light light in lights) {
+            light.intensity += lightStepValue;
+        }
+    }
+
+    private void handleDefaultActivities()
+    {
+        detectCurrentObject();
+        //move = true;
+
+        Vector3[] moveFactor = calculateMoveFactor();
+        objectEndPosition = currentObject.transform.position + moveFactor[0];
+        objectEndRotation = currentObject.transform.rotation.eulerAngles + moveFactor[1];
+        objectEndScale = currentObject.transform.localScale + moveFactor[2];
+    }
+
+    void CheckMovement()
+    {
+
+        // Check and stop the movement with help of StopMovement function
+        //else move the object with animation
+        if (currentObject == null) return;
+        if (Math.Abs(Vector3.Distance(currentObject.transform.position, objectEndPosition)) > 0.01)
+        {
+            // Debug.Log("ERR" + currentObject.transform.position + " " + objectEndPosition);
+            MoveObject();
+        }
+
+        if (Math.Abs(Vector3.Distance(currentObject.transform.rotation.eulerAngles, objectEndRotation)) > 0.01)
+        {
+            Debug.LogError("currentObject.transform.rotation.eulerAngles " + currentObject.transform.rotation.eulerAngles);
+            Debug.LogError(" objectEndPosition " + objectEndRotation);
+            rotateObject();
+        }
+
+        if (Math.Abs(Vector3.Distance(currentObject.transform.localScale, objectEndScale)) > 0.01)
+        {
+            //Debug.LogError("Dist " + Vector3.Distance(currentObject.transform.localScale, objectEndScale));
+            scaleObject();
+        }
+
+
+    }
+
+    private void detectCurrentObject()
+    {
+        switch (currentActivity)
+        {
+            case 0:
+                currentObjectBaseTransform = bookBaseTransform;
+                currentObjectFinalTransform = bookFinalTransform;
+                currentObject = book;
+                break;
+            case 1:
+                currentObjectBaseTransform = couldronBaseTransform;
+                currentObjectFinalTransform = couldronFinalTransform;
+                currentObject = couldron;
+                break;
+            case 2:
+                currentObjectBaseTransform = featherBaseTransform;
+                currentObjectFinalTransform = featherFinalTransform;
+                currentObject = feather;
+                break;
+            case 3:
+                currentObjectBaseTransform = plantBaseTransform;
+                currentObjectFinalTransform = plantFinalTransform;
+                currentObject = plant;
+                break;
+
+
+        }
+    }
+
+    public bool CheckGameOver()
+    {
+        if (numOfSoundsRemainingToPlay == -1) // when the last sound is played
+        {
+            return true;
+        }
+        return false;
+    }
+
+    // call this from the UI, if you want to let the kind practice n sounds.
+    public void HandleNSounds(int n)
+    {
+        SoundController.SetUpSound(); // can be setup in soundconttroller or outside
+        isGameOver = false;
+        sounds = SoundController.GetNSound(n);
+        Debug.Log(sounds);
+        numOfSoundsToPlay = sounds.Count; // max sound that can be played is what we have on the soundcontroller.cs
+        numOfSoundsRemainingToPlay = sounds.Count;
+        gameController.showGameObjects(gameController.findCurrentGameObjects());
+        SoundController.PlaySound(sounds[numOfSoundsToPlay - numOfSoundsRemainingToPlay]); 
     }
 
     public void setCurrentActivityType(int activity)
@@ -83,18 +206,33 @@ public class BookMover : MonoBehaviour
     private void handleEventEnd()
     {
         resetActiviyState();
-        gameObject.GetComponent<GameController>().loadNextActivity();
-        currentActivity = gameObject.GetComponent<GameController>().getCurrentActivity();
+        gameController.loadNextActivity();
+
+        // Play Sound and dont let activity start untill sound is played
+        numOfSoundsRemainingToPlay -= 1;
+        SoundController.PlaySound(sounds[numOfSoundsToPlay - numOfSoundsRemainingToPlay]);
+        
+
+        currentActivity = gameController.getCurrentActivity();
 
     }
 
     private void resetActiviyState()
     {
-        resetTransforms();
+        if (currentActivity == GameController.LIGHTACTIVITY)
+            resetBrightness();
+        else
+            resetTransforms();
         hasActivityEnded = false;
         stepsLeft = maxStepsAllowed;
         currentObject = null;
         currentObjectFinalTransform = null;
+    }
+
+    private void resetBrightness()
+    {
+        foreach (Light light in lights)
+            light.intensity -= maxBrightness;
     }
 
     private void resetTransforms()
@@ -105,16 +243,6 @@ public class BookMover : MonoBehaviour
 
     }
 
-    public void SetMovement()
-    {
-        detectCurrentObject();
-        //move = true;
-        handleGameState();
-        Vector3[] moveFactor = calculateMoveFactor();
-        objectEndPosition = currentObject.transform.position + moveFactor[0];
-        objectEndRotation = currentObject.transform.rotation.eulerAngles + moveFactor[1];
-        objectEndScale = currentObject.transform.localScale + moveFactor[2];
-    }
 
     private float getDistance(Vector3 vector1, Vector3 vector2)
     {
@@ -173,60 +301,11 @@ public class BookMover : MonoBehaviour
         return moveFactor;
     }
 
-    private void detectCurrentObject()
-    {
-        switch (currentActivity) {
-            case 0:
-                currentObjectBaseTransform = bookBaseTransform;
-                currentObjectFinalTransform = bookFinalTransform;
-                currentObject = book;
-                break;
-            case 1:
-                currentObjectBaseTransform = couldronBaseTransform;
-                currentObjectFinalTransform = couldronFinalTransform;
-                currentObject = couldron;
-                break;
-            case 2:
-                currentObjectBaseTransform = featherBaseTransform;
-                currentObjectFinalTransform = featherFinalTransform;
-                currentObject = feather;
-                break;
-            case 3:
-                currentObjectBaseTransform = plantBaseTransform;
-                currentObjectFinalTransform = plantFinalTransform;
-                currentObject = plant;
-                break;
-
-        }
-    }
-
-    void CheckMovement()
-    {
-        
-        // Check and stop the movement with help of StopMovement function
-        //else move the object with animation
-        if (currentObject == null) return;
-        if (Math.Abs(Vector3.Distance(currentObject.transform.position, objectEndPosition)) > 0.01)
-        {
-            Debug.Log("ERR" + currentObject.transform.position + " " + objectEndPosition);
-            MoveObject();
-        }
-
-        if (Math.Abs(Vector3.Distance(currentObject.transform.rotation.eulerAngles, objectEndRotation)) > 0.01)
-        {
-            Debug.LogError("currentObject.transform.rotation.eulerAngles " + currentObject.transform.rotation.eulerAngles);
-            Debug.LogError(" objectEndPosition " + objectEndRotation);
-            rotateObject();
-        }
-
-        if (Math.Abs(Vector3.Distance(currentObject.transform.localScale, objectEndScale))>0.01) 
-        {
-            //Debug.LogError("Dist " + Vector3.Distance(currentObject.transform.localScale, objectEndScale));
-            scaleObject();
-        }
 
 
-    }
+
+
+    // ---------------------------------------------------------------------------------------//
 
     private void scaleObject()
     {
@@ -235,14 +314,14 @@ public class BookMover : MonoBehaviour
 
     private void rotateObject()
     {
-        Debug.LogError(" errr " + currentObject.transform.rotation.eulerAngles + " , " + objectEndRotation);
+        //Debug.LogError(" errr " + currentObject.transform.rotation.eulerAngles + " , " + objectEndRotation);
 
         currentObject.transform.rotation = Quaternion.Lerp(Quaternion.Euler(currentObject.transform.rotation.eulerAngles), Quaternion.Euler(objectEndRotation), movementSpeed*Time.deltaTime);
     }
 
     void MoveObject()
     {
-        Debug.Log("ERR" + currentObject.transform.position + " " + objectEndPosition);
+        //Debug.Log("ERR" + currentObject.transform.position + " " + objectEndPosition);
         currentObject.transform.position = Vector3.Lerp(currentObject.transform.position, objectEndPosition, movementSpeed * Time.deltaTime);
     }
 }
