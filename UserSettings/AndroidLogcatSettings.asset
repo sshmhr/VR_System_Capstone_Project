@@ -1,37 +1,13 @@
 {
     "m_SelectedDeviceId": "1PASH9AGR40195",
     "m_SelectedPackage": {
-        "deviceId": "1PASH9AGR40195",
-        "name": "com.slp.PediatricSLPVideogame",
-        "processId": 32320,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "1PASH9AGR40195",
-            "name": "com.slp.PediatricSLPVideogame",
-            "processId": 29885,
-            "exited": true
-        },
-        {
-            "deviceId": "1PASH9AGR40195",
-            "name": "com.slp.PediatricSLPVideogame",
-            "processId": 30274,
-            "exited": true
-        },
-        {
-            "deviceId": "1PASH9AGR40195",
-            "name": "com.slp.PediatricSLPVideogame",
-            "processId": 30537,
-            "exited": true
-        },
-        {
-            "deviceId": "1PASH9AGR40195",
-            "name": "com.slp.PediatricSLPVideogame",
-            "processId": 30637,
-            "exited": true
-        },
         {
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
@@ -42,24 +18,30 @@
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
             "processId": 31550,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "1PASH9AGR40195",
             "name": "com.oculus.os.vrusb",
             "processId": 31877,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
             "processId": 32079,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
             "processId": 32320,
+            "exited": true
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.oculus.os.vrusb",
+            "processId": 1695,
             "exited": false
         },
         {

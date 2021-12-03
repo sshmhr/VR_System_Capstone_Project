@@ -6,11 +6,11 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     private const int ACTIVITYCOUNT = 5;
-    internal const int BOOKACTIVITY = 0;
+    internal const int BOOKACTIVITY = 3;
     internal const int COULDRONACTIVITY = 1;
-    internal const int FEATHERACTIVITY = 2;
+    internal const int FEATHERACTIVITY = 0;
     internal const int LIGHTACTIVITY = 4;
-    internal const int TREEACTIVITY = 3;
+    internal const int TREEACTIVITY = 2;
     private int currentActivity;
 
     public GameObject[] bookObjects;

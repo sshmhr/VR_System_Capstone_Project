@@ -25,6 +25,7 @@ public class SoundController : MonoBehaviour
     public void SetUpSound()
     {
         audioSource = GetComponent<AudioSource>();
+        Debug.LogError(audioSource);
         // to (re)create the sound json file
 
         soundData.Add($"{soundDirectory}/say ka");
@@ -32,6 +33,8 @@ public class SoundController : MonoBehaviour
         soundData.Add($"{soundDirectory}/say ma");
         soundData.Add($"{soundDirectory}/say ta");
         soundData.Add($"{soundDirectory}/aah");
+
+        Debug.LogError(soundData);
 
         //soundData.Add(
         //     new Sound()
@@ -60,11 +63,12 @@ public class SoundController : MonoBehaviour
     //         }
     //         );
     //}
+
     public void  PlaySound(string soundPath)
     {
 
         AudioClip currentClip = Resources.Load<AudioClip>(soundPath);
-        //Debug.Log(currentClip);
+        Debug.Log(currentClip);
         audioSource.clip = currentClip;
         audioSource.PlayOneShot(audioSource.clip);
     }

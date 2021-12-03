@@ -67,7 +67,7 @@ public class BookMover : MonoBehaviour
         stepsLeft = maxStepsAllowed;
         currentActivity = gameController.getCurrentActivity();
         SoundController = gameObject.GetComponent<SoundController>();
-        HandleNSounds(5); // To be set by the code which starts the game
+        HandleNSounds(6); // To be set by the code which starts the game
     }
 
     void Update()
@@ -151,22 +151,22 @@ public class BookMover : MonoBehaviour
     {
         switch (currentActivity)
         {
-            case 0:
+            case GameController.BOOKACTIVITY:
                 currentObjectBaseTransform = bookBaseTransform;
                 currentObjectFinalTransform = bookFinalTransform;
                 currentObject = book;
                 break;
-            case 1:
+            case GameController.COULDRONACTIVITY:
                 currentObjectBaseTransform = couldronBaseTransform;
                 currentObjectFinalTransform = couldronFinalTransform;
                 currentObject = couldron;
                 break;
-            case 2:
+            case GameController.FEATHERACTIVITY:
                 currentObjectBaseTransform = featherBaseTransform;
                 currentObjectFinalTransform = featherFinalTransform;
                 currentObject = feather;
                 break;
-            case 3:
+            case GameController.TREEACTIVITY:
                 currentObjectBaseTransform = plantBaseTransform;
                 currentObjectFinalTransform = plantFinalTransform;
                 currentObject = plant;
