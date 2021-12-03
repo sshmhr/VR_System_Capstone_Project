@@ -1,19 +1,13 @@
 {
     "m_SelectedDeviceId": "1PASH9AGR40195",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "1PASH9AGR40195",
+        "name": "com.slp.PediatricSLPVideogame",
+        "processId": 15559,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "1PASH9AGR40195",
-            "name": "com.slp.PediatricSLPVideogame",
-            "processId": 31091,
-            "exited": true
-        },
         {
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
@@ -42,6 +36,30 @@
             "deviceId": "1PASH9AGR40195",
             "name": "com.oculus.os.vrusb",
             "processId": 1695,
+            "exited": true
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.oculus.shellenv",
+            "processId": 8526,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 14869,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 15100,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 15559,
             "exited": false
         },
         {
