@@ -66,7 +66,7 @@ public class BookMover : MonoBehaviour
         gameController = gameObject.GetComponent<GameController>();
         stepsLeft = maxStepsAllowed;
         currentActivity = gameController.getCurrentActivity();
-        HandleNSounds(6); // To be set by the code which starts the game
+        HandleNSounds(5); // To be set by the code which starts the game
     }
 
     void Update()
