@@ -10,7 +10,7 @@ using static System.Math;
 public class BookMover : MonoBehaviour
 {
     private GameController gameController;
-
+    public SoundController SoundController;
     public GameObject book;
     public GameObject couldron;
     public GameObject feather;
@@ -37,7 +37,7 @@ public class BookMover : MonoBehaviour
     private Vector3 objectEndScale;
     private Vector3 objectEndPosition; // to be set by the handleRep Function
 
-    private SoundController SoundController;
+    
     // handles sound start and end
     private bool hasSoundStarted = false;
     private bool hasSoundEnded = true;
@@ -66,7 +66,6 @@ public class BookMover : MonoBehaviour
         gameController = gameObject.GetComponent<GameController>();
         stepsLeft = maxStepsAllowed;
         currentActivity = gameController.getCurrentActivity();
-        SoundController = gameObject.GetComponent<SoundController>();
         HandleNSounds(5); // To be set by the code which starts the game
     }
 
@@ -151,22 +150,22 @@ public class BookMover : MonoBehaviour
     {
         switch (currentActivity)
         {
-            case 0:
+            case GameController.BOOKACTIVITY:
                 currentObjectBaseTransform = bookBaseTransform;
                 currentObjectFinalTransform = bookFinalTransform;
                 currentObject = book;
                 break;
-            case 1:
+            case GameController.COULDRONACTIVITY:
                 currentObjectBaseTransform = couldronBaseTransform;
                 currentObjectFinalTransform = couldronFinalTransform;
                 currentObject = couldron;
                 break;
-            case 2:
+            case GameController.FEATHERACTIVITY:
                 currentObjectBaseTransform = featherBaseTransform;
                 currentObjectFinalTransform = featherFinalTransform;
                 currentObject = feather;
                 break;
-            case 3:
+            case GameController.TREEACTIVITY:
                 currentObjectBaseTransform = plantBaseTransform;
                 currentObjectFinalTransform = plantFinalTransform;
                 currentObject = plant;
