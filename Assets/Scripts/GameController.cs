@@ -9,8 +9,8 @@ public class GameController : MonoBehaviour
     internal const int BOOKACTIVITY = 3;
     internal const int COULDRONACTIVITY = 1;
     internal const int FEATHERACTIVITY = 2;
-    internal const int LIGHTACTIVITY = 4;
-    internal const int TREEACTIVITY = 0;
+    internal const int LIGHTACTIVITY = 0;
+    internal const int TREEACTIVITY = 4;
     private int currentActivity;
 
     public GameObject[] bookObjects;

@@ -15,6 +15,7 @@ public class BookMover : MonoBehaviour
     public GameObject couldron;
     public GameObject feather;
     public GameObject plant;
+    public GameObject light;
 
     private GameObject currentObject;
 
@@ -22,11 +23,13 @@ public class BookMover : MonoBehaviour
     public Vector3[] couldronFinalTransform = new Vector3[3];
     public Vector3[] featherFinalTransform = new Vector3[3];
     public Vector3[] plantFinalTransform = new Vector3[3];
+    public Vector3[] lightFinalTransform = new Vector3[3];
 
     public Vector3[] bookBaseTransform = new Vector3[3];
     public Vector3[] couldronBaseTransform = new Vector3[3];
     public Vector3[] featherBaseTransform = new Vector3[3];
     public Vector3[] plantBaseTransform = new Vector3[3];
+    public Vector3[] lightBaseTransform = new Vector3[3];
 
     private Vector3[] currentObjectFinalTransform, currentObjectBaseTransform;
     private Vector3[] cuyrrentObjectStep = new Vector3[3];
@@ -94,8 +97,8 @@ public class BookMover : MonoBehaviour
         handleGameState();
         if (currentActivity == GameController.LIGHTACTIVITY)
             handleLightActivity();
-        else
-            handleDefaultActivities();
+
+        handleDefaultActivities();
     }
 
     private void handleLightActivity()
@@ -171,7 +174,11 @@ public class BookMover : MonoBehaviour
                 currentObject = plant;
                 break;
 
-
+            case GameController.LIGHTACTIVITY:
+                currentObjectBaseTransform = lightBaseTransform;
+                currentObjectFinalTransform = lightFinalTransform;
+                currentObject = light;
+                break;
         }
     }
 
