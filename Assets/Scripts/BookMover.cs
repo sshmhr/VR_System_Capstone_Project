@@ -127,6 +127,7 @@ public class BookMover : MonoBehaviour
         // Check and stop the movement with help of StopMovement function
         //else move the object with animation
         if (currentObject == null) return;
+        playVFX();
         if (Math.Abs(Vector3.Distance(currentObject.transform.position, objectEndPosition)) > 0.01)
         {
             // Debug.Log("ERR" + currentObject.transform.position + " " + objectEndPosition);
@@ -147,6 +148,11 @@ public class BookMover : MonoBehaviour
         }
 
 
+    }
+
+    private void playVFX()
+    {
+        //currentObject.GetComponent<ParticleSystem>().Play();
     }
 
     private void detectCurrentObject()
