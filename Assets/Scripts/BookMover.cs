@@ -15,6 +15,7 @@ public class BookMover : MonoBehaviour
     public GameObject couldron;
     public GameObject feather;
     public GameObject plant;
+    public GameObject light;
 
     private GameObject currentObject;
 
@@ -22,11 +23,13 @@ public class BookMover : MonoBehaviour
     public Vector3[] couldronFinalTransform = new Vector3[3];
     public Vector3[] featherFinalTransform = new Vector3[3];
     public Vector3[] plantFinalTransform = new Vector3[3];
+    public Vector3[] lightFinalTransform = new Vector3[3];
 
     public Vector3[] bookBaseTransform = new Vector3[3];
     public Vector3[] couldronBaseTransform = new Vector3[3];
     public Vector3[] featherBaseTransform = new Vector3[3];
     public Vector3[] plantBaseTransform = new Vector3[3];
+    public Vector3[] lightBaseTransform = new Vector3[3];
 
     private Vector3[] currentObjectFinalTransform, currentObjectBaseTransform;
     private Vector3[] cuyrrentObjectStep = new Vector3[3];
@@ -53,6 +56,7 @@ public class BookMover : MonoBehaviour
     public int maxStepsAllowed = 10;
     public int Movementspeed;
     private int stepsLeft;
+    public DataManager dataManager;
     private bool hasActivityEnded = false;
     private bool isGameOver = false; // to be used by function (probably) UI part,
     private Light[] lights;
@@ -63,10 +67,11 @@ public class BookMover : MonoBehaviour
 
     void Start()
     {
+        maxStepsAllowed = dataManager.getMaxStepsAllowed();
         gameController = gameObject.GetComponent<GameController>();
         stepsLeft = maxStepsAllowed;
         currentActivity = gameController.getCurrentActivity();
-        HandleNSounds(5); // To be set by the code which starts the game
+        HandleNSounds(-1); 
     }
 
     void Update()
@@ -94,8 +99,8 @@ public class BookMover : MonoBehaviour
         handleGameState();
         if (currentActivity == GameController.LIGHTACTIVITY)
             handleLightActivity();
-        else
-            handleDefaultActivities();
+
+        handleDefaultActivities();
     }
 
     private void handleLightActivity()
@@ -124,6 +129,7 @@ public class BookMover : MonoBehaviour
         // Check and stop the movement with help of StopMovement function
         //else move the object with animation
         if (currentObject == null) return;
+        playVFX();
         if (Math.Abs(Vector3.Distance(currentObject.transform.position, objectEndPosition)) > 0.01)
         {
             // Debug.Log("ERR" + currentObject.transform.position + " " + objectEndPosition);
@@ -144,6 +150,11 @@ public class BookMover : MonoBehaviour
         }
 
 
+    }
+
+    private void playVFX()
+    {
+        //currentObject.GetComponent<ParticleSystem>().Play();
     }
 
     private void detectCurrentObject()
@@ -171,7 +182,11 @@ public class BookMover : MonoBehaviour
                 currentObject = plant;
                 break;
 
-
+            case GameController.LIGHTACTIVITY:
+                currentObjectBaseTransform = lightBaseTransform;
+                currentObjectFinalTransform = lightFinalTransform;
+                currentObject = light;
+                break;
         }
     }
 

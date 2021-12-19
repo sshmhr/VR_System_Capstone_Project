@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "1PASH9AGR40195",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "1PASH9AGR40195",
+        "name": "com.slp.PediatricSLPVideogame",
+        "processId": 13761,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -54,6 +54,90 @@
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
             "processId": 25823,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 3757,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 21858,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 24437,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 24849,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 25168,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 25483,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 25743,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 26561,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 8689,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 9424,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 9914,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 12586,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 12810,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 13761,
             "exited": false
         },
         {
