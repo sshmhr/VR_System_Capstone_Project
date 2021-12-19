@@ -22,16 +22,23 @@ public class SoundController : MonoBehaviour
     private  List<string> soundData = new List<string>();
     private string soundDirectory = "AudioFiles";
     private AudioSource audioSource;
+    public DataManager dataManager;
     public void SetUpSound()
     {
         audioSource = GetComponent<AudioSource>();
         Debug.LogError(audioSource);
+        foreach (string soundName in dataManager.getSelectedSounds()) {
+            Debug.Log(soundName);
+            soundData.Add($"{soundDirectory}/{soundName}");
+        }
         // to (re)create the sound json file
-        soundData.Add($"{soundDirectory}/aah");
+        
         soundData.Add($"{soundDirectory}/say ka");
-        soundData.Add($"{soundDirectory}/say la");
-        soundData.Add($"{soundDirectory}/say ma");
-        soundData.Add($"{soundDirectory}/say ta");
+        //soundData.Add($"{soundDirectory}/say la");
+        //soundData.Add($"{soundDirectory}/say ma");
+        //soundData.Add($"{soundDirectory}/say ta");
+
+        
         
 
         Debug.LogError(soundData);

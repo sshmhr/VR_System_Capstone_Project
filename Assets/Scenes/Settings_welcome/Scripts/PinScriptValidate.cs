@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 //whenever we change the scenes in unity, we need to use this package
@@ -7,7 +8,7 @@ public class PinScriptValidate : MonoBehaviour
 {
     public Slider repSlider;
     public Text reps;
-    public string passwordEntered;
+    private string passwordEntered;
     public Text inputField;
     //public GameObject textDisplay;
     public GameObject soundCheckboxes;
@@ -16,8 +17,11 @@ public class PinScriptValidate : MonoBehaviour
     public GameObject objecttoDeactivate;
     public GameObject objecttoActivate1;
     public GameObject objecttoDeactivate1;
-
+    public DataManager dataManager; 
     public TMPro.TMP_Dropdown myDrop;
+    private void Start()
+    {
+    }
 
     public void getInputKey()
     {
@@ -51,23 +55,36 @@ public class PinScriptValidate : MonoBehaviour
     {
         Toggle[] checkboxList = soundCheckboxes.GetComponentsInChildren<Toggle>();
         Debug.Log(checkboxList.Length);
+        List<string> selectedWords = new List<string>();
+        List<string> deletedWords = new List<string>();
         foreach (Toggle checkbox in checkboxList) {
-            Debug.Log(checkbox.isOn);
-            Debug.Log(checkbox.name);
+            if (checkbox.isOn)
+            {
+                selectedWords.Add(checkbox.name); 
+            }
+            else {
+                deletedWords.Add(checkbox.name);
+                //dataManager.deleteWord("_checkbox_" + checkbox.name);
+            }
         }
-
-  }
+        dataManager.saveWords(selectedWords);
+        dataManager.deleteWords(deletedWords);
+    }
 
     public void RepetitionSelection()
     {
-        reps.text = "" + repSlider.value;
+        reps.text = "" + (int)repSlider.value;
+        dataManager.saveReps((int)repSlider.value);
     }
 
     public void StreamSelection()
     {
         Toggle[] checkboxList = streamCheckboxes.GetComponentsInChildren<Toggle>();
-        if (checkboxList[0].isOn) Debug.Log("Longstream");
-        if (checkboxList[1].isOn) Debug.Log("multisyllabic");
+        bool isLongStream = false;
+        if (checkboxList[0].isOn) isLongStream = true;
+        if (isLongStream) dataManager.saveReps(1);
+
+
 
     }
 }

@@ -56,6 +56,7 @@ public class BookMover : MonoBehaviour
     public int maxStepsAllowed = 10;
     public int Movementspeed;
     private int stepsLeft;
+    public DataManager dataManager;
     private bool hasActivityEnded = false;
     private bool isGameOver = false; // to be used by function (probably) UI part,
     private Light[] lights;
@@ -66,10 +67,11 @@ public class BookMover : MonoBehaviour
 
     void Start()
     {
+        maxStepsAllowed = dataManager.getMaxStepsAllowed();
         gameController = gameObject.GetComponent<GameController>();
         stepsLeft = maxStepsAllowed;
         currentActivity = gameController.getCurrentActivity();
-        HandleNSounds(5); // To be set by the code which starts the game
+        HandleNSounds(-1); 
     }
 
     void Update()

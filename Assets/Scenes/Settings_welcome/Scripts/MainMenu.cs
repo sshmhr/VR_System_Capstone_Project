@@ -10,10 +10,11 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public DataManager dataManager;
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        // this is to load the next scene present in the queue
+        dataManager.saveGameState();
     }
 
     public void QuitGame()
