@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "1PASH9AGR40195",
         "name": "com.slp.PediatricSLPVideogame",
-        "processId": 9424,
+        "processId": 12810,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -114,6 +114,24 @@
             "deviceId": "1PASH9AGR40195",
             "name": "com.slp.PediatricSLPVideogame",
             "processId": 9424,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 9914,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 12586,
+            "exited": false
+        },
+        {
+            "deviceId": "1PASH9AGR40195",
+            "name": "com.slp.PediatricSLPVideogame",
+            "processId": 12810,
             "exited": false
         },
         {
