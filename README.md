@@ -1,5 +1,6 @@
 # VR_System_Capstone_Project
-VR System to Assist School Age Children Practise Motor Speech Development Exercises
+VR System to Assist School Age Children Practise Motor Speech Development Exercises. The children are currently undergoing therapy and this
+game serves as an interactive and fun way to practice the exercises at home along with the therapy. 
 
 ### Built Using Unity
 1. Particle Systems
